@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mouse Shadow</title>
+    <link rel="icon" href="https://fav.farm/🔥" />
+  </head>
+  <body>
+    <div class="hero">
+      <h1 contenteditable>🔥WOAH!</h1>
+    </div>
+
+    <style>
+      html {
+        color: black;
+        font-family: sans-serif;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+      }
+
+      h1 {
+        text-shadow: 10px 10px 0 rgba(0, 0, 0, 1);
+        font-size: 100px;
+      }
+    </style>
+
+    <script>
+      (function () {
+        let hero = document.querySelector(".hero");
+        let text = hero.querySelector("h1");
+        let length = 250;
+        hero.addEventListener("mousemove", function (e) {
+          let { offsetX, offsetY } = e;
+
+          if (e.target !== this) {
+            offsetX += e.target.offsetLeft;
+            offsetY += e.target.offsetTop;
+          }
+
+          let lengthX =
+            Math.floor((offsetX / this.offsetWidth) * length) * 2 - length;
+          let lengthY =
+            Math.floor((offsetY / this.offsetHeight) * length) * 2 - length;
+
+          text.style.textShadow =
+            `${lengthX}px ${lengthY}px 0 rgba(255, 0, 255, 0.7), ` +
+            `${lengthX * -1}px ${lengthY}px 0 rgba(0, 255, 255, 0.7), ` +
+            `${lengthY}px ${lengthX * -1}px 0 rgba(0, 255, 0, 0.7), ` +
+            `${lengthY * -1}px ${lengthX}px 0 rgba(0, 0, 255, 0.7)`;
+        });
+      })();
+    </script>
+  </body>
+</html>
